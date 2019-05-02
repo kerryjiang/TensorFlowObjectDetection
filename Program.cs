@@ -23,8 +23,6 @@ namespace TFPhoto
 
         static async Task Main(string[] args)
         {
-            _imageDir = Path.Combine(AppContext.BaseDirectory, "images");
-
             await PrepareData();
 
             var p = new Program();
@@ -159,6 +157,16 @@ namespace TFPhoto
 
             if (!File.Exists(localFilePath))
                 await client.DownloadFileTaskAsync("https://raw.githubusercontent.com/tensorflow/models/master/research/object_detection/data/mscoco_label_map.pbtxt", localFilePath);
+
+            _imageDir = Path.Combine(AppContext.BaseDirectory, "images");
+
+            if (!Directory.Exists(_imageDir))
+                Directory.CreateDirectory(_imageDir);
+
+            localFilePath = Path.Combine(_imageDir, "input.jpg");
+
+            if (!File.Exists(localFilePath))
+                await client.DownloadFileTaskAsync("https://raw.githubusercontent.com/tensorflow/models/master/research/object_detection/test_images/image2.jpg", localFilePath);
         }
 
         private static void Unzip(string source, string saveTo)
