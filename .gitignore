@@ -1,0 +1,8 @@
+bin
+obj
+_ReSharper.*
+*.suo
+*.user
+*.lock.json
+*.log
+.vs
