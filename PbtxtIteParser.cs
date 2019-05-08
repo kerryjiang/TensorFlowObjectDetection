@@ -41,7 +41,7 @@ namespace TFPhoto
                         continue;
                     }
 
-                    sb.AppendLine(line);
+                    sb.AppendLine(line + ",");
                 }
             }
 
